@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct ContentView : View {
+struct UsersListView : View {
     @State var store = UsersStore(users: sampleData)
     
     var body: some View {
@@ -21,7 +21,9 @@ struct ContentView : View {
                 }
                 Section {
                     ForEach(store.users) {user in
-                        UserRow(user: user)
+                        NavigationButton(destination: UserDetailView(user: user)) {
+                            UserRow(user: user)
+                        }
                     }
                 }
             }
@@ -39,7 +41,7 @@ struct ContentView : View {
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {
     static var previews: some View {
-        ContentView(store: UsersStore(users: sampleData))
+        UsersListView(store: UsersStore(users: sampleData))
     }
 }
 #endif
