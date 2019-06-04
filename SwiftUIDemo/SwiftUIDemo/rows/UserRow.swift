@@ -21,7 +21,7 @@ struct UserRow : View {
 
                 VStack {
                     Text(user.name)
-                    Text(user.username)
+                    Text(user.username).lineLimit(0)
                 }
             }
         }

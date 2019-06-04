@@ -15,7 +15,7 @@ struct UserDetailView : View {
         VStack {
             Image(user.imageName)
             Text(user.name)
-            Text(user.username)
+            Text(user.username).lineLimit(0)
         }
     }
 }
