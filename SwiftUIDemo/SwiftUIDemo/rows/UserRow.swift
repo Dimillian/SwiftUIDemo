@@ -14,10 +14,7 @@ struct UserRow : View {
     var body: some View {
         VStack {
             HStack {
-                Image(user.imageName)
-                    .clipShape(Circle())
-                    .aspectRatio(contentMode: ContentMode.fit)
-                    .frame(width: 50, height: 50)
+                Image(systemName: user.imageName)
 
                 VStack {
                     Text(user.name)

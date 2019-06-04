@@ -13,7 +13,7 @@ struct UserDetailView : View {
     
     var body: some View {
         VStack {
-            Image(user.imageName)
+            Image(systemName: user.imageName)
             Text(user.name)
             Text(user.username).lineLimit(0)
         }

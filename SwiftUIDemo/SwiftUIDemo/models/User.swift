@@ -13,7 +13,7 @@ struct User: Identifiable {
     let id: Int
     let name: String
     let username: String
-    let imageName = "user-image"
+    let imageName = "person"
 }
 
 let sampleData = [User(id: 0, name: "user 1", username: "@user1"),
