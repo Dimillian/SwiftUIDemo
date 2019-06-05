@@ -10,19 +10,13 @@ import SwiftUI
 
 struct UsersListView : View {
     @ObjectBinding var store = UsersStore()
-    @State var isEditing = false
     
     var body: some View {
         NavigationView {
             List {
                 Section {
-                    if !isEditing {
-                        Button(action: addUser) {
-                            Text("Add user")
-                        }
-                    }
-                    Button(action: editMode) {
-                        Text(isEditing ? "Done" : "Edit")
+                    Button(action: addUser) {
+                        Text("Add user")
                     }
                     Button(action: targetUpdate) {
                         Text("Update first")
@@ -34,12 +28,15 @@ struct UsersListView : View {
                             UserRow(user: user)
                         }
                     }
+                        .onDelete(perform: delete)
+                        .onMove(perform: move)
                 }
             }
                 .listStyle(.grouped)
+                .navigationBarTitle(Text("Users (\(store.users.count))"))
+                .navigationBarItems(trailing: EditButton())
         }
-            .navigationBarTitle(Text("Test"))
-            .navigationBarItems(trailing: Text("Add"))
+
     }
     
     func addUser() {
@@ -48,13 +45,19 @@ struct UsersListView : View {
                                 username: "@newuser"))
     }
     
-    func editMode() {
-        isEditing.toggle()
+    func targetUpdate() {
+        if !store.users.isEmpty {
+            store.users[0] = User(id: 0, name: "user1", username: "u\ns\ne\nr\nn\na\nm\ne")
+        }
     }
     
+    func delete(at offset: IndexSet) {
+        store.users.remove(at: offset.first!)
+    }
     
-    func targetUpdate() {
-        store.users[0] = User(id: 0, name: "user1", username: "u\ns\ne\nr\nn\na\nm\ne")
+    func move(from: IndexSet, to: Int) {
+        let user = store.users.remove(at: from.first!)
+        store.users.insert(user, at: to)
     }
 }
 

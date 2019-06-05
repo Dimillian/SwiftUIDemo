@@ -13,7 +13,7 @@ import Combine
 class UsersStore: BindableObject {
     var users: [User] {
         didSet {
-            didChange.send(self.users)
+            didChange.send(users)
         }
     }
     

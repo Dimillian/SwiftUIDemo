@@ -18,7 +18,9 @@ struct UserRow : View {
 
                 VStack {
                     Text(user.name)
-                    Text(user.username).lineLimit(0)
+                    Text(user.username)
+                        .color(.secondary)
+                        .lineLimit(0)
                 }
             }
         }

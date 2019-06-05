@@ -12,11 +12,11 @@ struct UserDetailView : View {
     let user: User
     
     var body: some View {
-        VStack {
-            Image(systemName: user.imageName)
-            Text(user.name)
-            Text(user.username).lineLimit(0)
-        }
+            VStack {
+                Image(systemName: user.imageName)
+                Text(user.name)
+                Text(user.username).lineLimit(0)
+            }
     }
 }
 
