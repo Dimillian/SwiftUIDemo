@@ -10,7 +10,9 @@
  
  struct UserEditForm : View {
     @EnvironmentObject var usersStore: UsersStore
+    
     let userId: Int
+    let saveHandler: ((Bool) -> Swift.Void)?
     
     @State var newUserName = ""
     @State var newUserUsername = ""
@@ -45,17 +47,18 @@
     
     func save() {
         usersStore.editUser(id: userId, name: newUserName, username: newUserUsername)
+        saveHandler?(true)
     }
     
     func close() {
-        
+        saveHandler?(false)
     }
  }
  
  #if DEBUG
  struct UserEditForm_Previews : PreviewProvider {
     static var previews: some View {
-        UserEditForm(userId: 0).environmentObject(UsersStore(users: sampleData))
+        UserEditForm(userId: 0, saveHandler: nil).environmentObject(UsersStore(users: sampleData))
     }
  }
  #endif

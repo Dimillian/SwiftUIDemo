@@ -16,28 +16,29 @@ struct UserDetailView : View {
     
     var editModal: Modal {
         let user = usersStore.users[userId]
-        return Modal(UserEditForm(userId: user.id).environmentObject(usersStore)) {
+        return Modal(UserEditForm(userId: user.id, saveHandler: {nsaved in
+            self.showEditModal = false
+        }).environmentObject(usersStore)) {
             self.showEditModal = false
         }
     }
     
     var body: some View {
-        get {
-            let user = usersStore.users[userId]
-            return VStack {
-                Image(systemName: user.imageName)
-                Text(user.name)
-                Text(user.username).lineLimit(0)
-                }
-                .navigationBarTitle(Text(user.name), displayMode: .inline)
-                .navigationBarItems(trailing:
-                    Button(action: {
-                        self.showEditModal = true
-                    }) {
-                        Text("Edit user")
-                        }.presentation(self.showEditModal ? self.editModal : nil))
-        }
-        }
+        let user = usersStore.users[userId]
+        return VStack {
+            Image(systemName: user.imageName)
+            Text(user.name)
+            Text(user.username).lineLimit(0)
+            }
+            .navigationBarTitle(Text(user.name), displayMode: .inline)
+            .navigationBarItems(trailing:
+                Button(action: {
+                    self.showEditModal = true
+                }) {
+                    Text("Edit user")
+                    }
+                    .presentation(self.showEditModal ? self.editModal : nil))
+    }
 }
 
 #if DEBUG
@@ -49,3 +50,5 @@ struct UserDetailView_Previews : PreviewProvider {
     }
 }
 #endif
+
+
