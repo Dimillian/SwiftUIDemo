@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct UsersListView : View {
-    @State var store = UsersStore(users: sampleData)
+    @ObjectBinding var store = UsersStore()
     @State var isEditing = false
     
     var body: some View {

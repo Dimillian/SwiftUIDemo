@@ -10,14 +10,14 @@ import Foundation
 import SwiftUI
 import Combine
 
-final class UsersStore: BindableObject {
+class UsersStore: BindableObject {
     var users: [User] {
         didSet {
             didChange.send(self.users)
         }
     }
     
-    init(users: [User]) {
+    init(users: [User] = []) {
         self.users = users
     }
     

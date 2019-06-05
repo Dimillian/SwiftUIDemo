@@ -67,7 +67,7 @@
 				69E06C4A22A7061E0081D614 /* views */,
 				69E06C4722A7015F0081D614 /* rows */,
 				69E06C4122A6FD7A0081D614 /* stores */,
-				69E06C4022A6FD730081D614 /* models */,
+				69E06C4022A6FD730081D614 /* model */,
 				69E06C2C22A6FD6B0081D614 /* AppDelegate.swift */,
 				69E06C2E22A6FD6B0081D614 /* SceneDelegate.swift */,
 				69E06C3222A6FD6D0081D614 /* Assets.xcassets */,
@@ -86,12 +86,12 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		69E06C4022A6FD730081D614 /* models */ = {
+		69E06C4022A6FD730081D614 /* model */ = {
 			isa = PBXGroup;
 			children = (
 				69E06C4322A6FE940081D614 /* User.swift */,
 			);
-			path = models;
+			path = model;
 			sourceTree = "<group>";
 		};
 		69E06C4122A6FD7A0081D614 /* stores */ = {
