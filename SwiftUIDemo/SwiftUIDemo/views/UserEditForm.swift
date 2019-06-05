@@ -9,34 +9,38 @@
  import SwiftUI
  
  struct UserEditForm : View {
-    var user: User
+    @ObjectBinding var usersStore: UsersStore
+    let userId: Int
     
     @State var newUserName = ""
     @State var newUserUsername = ""
     
     var body: some View {
-        NavigationView {
-            VStack(alignment: .leading, spacing: 10) {
-                Text("User name")
-                TextField($newUserName, placeholder: Text("New name"))
-                    .textFieldStyle(.roundedBorder)
-                Divider()
-                Text("Username")
-                TextField($newUserUsername, placeholder: Text("New username"))
-                    .textFieldStyle(.roundedBorder)
-                }.padding(16)
+        get {
+            let user = usersStore.users[userId]
+            return NavigationView {
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("User name")
+                    TextField($newUserName, placeholder: Text("New name"))
+                        .textFieldStyle(.roundedBorder)
+                    Divider()
+                    Text("Username")
+                    TextField($newUserUsername, placeholder: Text("New username"))
+                        .textFieldStyle(.roundedBorder)
+                    }.padding(16)
                 Button(action: save) {
                     Text("Save")
-                }
-                .navigationBarItems(trailing: Button(action: close) {
-                    Text("Close")
-                })
-                .navigationBarTitle(Text("Edit \(user.name)"), displayMode: .inline)
+                    }
+                    .navigationBarItems(trailing: Button(action: close) {
+                        Text("Close")
+                    })
+                    .navigationBarTitle(Text("Edit \(user.name)"), displayMode: .inline)
+            }
         }
     }
     
     func save() {
-        store.usersStore.editUser(id: user.id, name: newUserName, username: newUserUsername)
+        usersStore.editUser(id: userId, name: newUserName, username: newUserUsername)
     }
     
     func close() {
@@ -47,8 +51,9 @@
  #if DEBUG
  struct UserEditForm_Previews : PreviewProvider {
     static var previews: some View {
-        UserEditForm(user: sampleData[0])
+        UserEditForm(usersStore: UsersStore(users: sampleData), userId: 0)
     }
  }
  #endif
+ 
 

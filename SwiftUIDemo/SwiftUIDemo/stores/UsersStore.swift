@@ -24,7 +24,7 @@ class UsersStore: BindableObject {
     }
     
     func addUser() {
-        users.append(User(id: users.count + 1,
+        users.append(User(id: users.count,
                           name: "New user \(users.count + 1)",
                         username: "@newuser\(users.count + 1)"))
     }
