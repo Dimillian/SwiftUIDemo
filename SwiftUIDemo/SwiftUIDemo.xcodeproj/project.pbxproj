@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6994C88022A81130006C5F62 /* UserEditForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6994C87F22A81130006C5F62 /* UserEditForm.swift */; };
 		69E06C2D22A6FD6B0081D614 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E06C2C22A6FD6B0081D614 /* AppDelegate.swift */; };
 		69E06C2F22A6FD6B0081D614 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E06C2E22A6FD6B0081D614 /* SceneDelegate.swift */; };
 		69E06C3122A6FD6B0081D614 /* UsersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E06C3022A6FD6B0081D614 /* UsersListView.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6994C87F22A81130006C5F62 /* UserEditForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditForm.swift; sourceTree = "<group>"; };
 		69E06C2922A6FD6B0081D614 /* SwiftUIDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69E06C2C22A6FD6B0081D614 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		69E06C2E22A6FD6B0081D614 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			children = (
 				69E06C3022A6FD6B0081D614 /* UsersListView.swift */,
 				69E06C4B22A706450081D614 /* UserDetailView.swift */,
+				6994C87F22A81130006C5F62 /* UserEditForm.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 				69E06C2F22A6FD6B0081D614 /* SceneDelegate.swift in Sources */,
 				69E06C4C22A706450081D614 /* UserDetailView.swift in Sources */,
 				69E06C3122A6FD6B0081D614 /* UsersListView.swift in Sources */,
+				6994C88022A81130006C5F62 /* UserEditForm.swift in Sources */,
 				69E06C4922A7016B0081D614 /* UserRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
