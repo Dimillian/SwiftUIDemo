@@ -9,7 +9,7 @@
  import SwiftUI
  
  struct UserEditForm : View {
-    @ObjectBinding var usersStore: UsersStore
+    @EnvironmentObject var usersStore: UsersStore
     let userId: Int
     
     @State var newUserName = ""
@@ -30,6 +30,10 @@
                     }.padding(16)
                 Button(action: save) {
                     Text("Save")
+                        .padding(8)
+                        .foregroundColor(.white)
+                        .background(Color.green)
+                        .cornerRadius(8)
                     }
                     .navigationBarItems(trailing: Button(action: close) {
                         Text("Close")
@@ -51,7 +55,7 @@
  #if DEBUG
  struct UserEditForm_Previews : PreviewProvider {
     static var previews: some View {
-        UserEditForm(usersStore: UsersStore(users: sampleData), userId: 0)
+        UserEditForm(userId: 0).environmentObject(UsersStore(users: sampleData))
     }
  }
  #endif

@@ -9,14 +9,14 @@
 import SwiftUI
 
 struct UserDetailView : View {
-    @ObjectBinding var usersStore: UsersStore
+    @EnvironmentObject var usersStore: UsersStore
     let userId: Int
     
     @State var showEditModal = false
     
     var editModal: Modal {
         let user = usersStore.users[userId]
-        return Modal(UserEditForm(usersStore: usersStore, userId: user.id)) {
+        return Modal(UserEditForm(userId: user.id).environmentObject(usersStore)) {
             self.showEditModal = false
         }
     }
@@ -44,7 +44,7 @@ struct UserDetailView : View {
 struct UserDetailView_Previews : PreviewProvider {
     static var previews: some View {
         NavigationView {
-            UserDetailView(usersStore: UsersStore(users: sampleData), userId: 0)
+            UserDetailView(userId: 0).environmentObject(UsersStore(users: sampleData))
         }
     }
 }

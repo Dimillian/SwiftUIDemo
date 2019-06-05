@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct UsersListView : View {
-    @ObjectBinding var usersStore: UsersStore
+    @EnvironmentObject var usersStore: UsersStore
     
     var body: some View {
         NavigationView {
@@ -24,7 +24,7 @@ struct UsersListView : View {
                 }
                 Section {
                     ForEach(usersStore.users) {user in
-                        NavigationButton(destination: UserDetailView(usersStore: store.usersStore, userId: user.id)) {
+                        NavigationButton(destination: UserDetailView(userId: user.id).environmentObject(self.usersStore)) {
                             UserRow(user: user)
                         }
                     }
@@ -61,7 +61,7 @@ struct UsersListView : View {
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {
     static var previews: some View {
-        UsersListView(usersStore: UsersStore(users: sampleData))
+        UsersListView().environmentObject(UsersStore(users: sampleData))
     }
 }
 #endif
