@@ -10,20 +10,20 @@ import SwiftUI
 import Combine
 
 struct UserDetailView : View {
-    @EnvironmentObject var usersState: Store<UsersState>
+    @EnvironmentObject var state: AppState
     let userId: Int
     
     var editModal: Modal {
-        let user = usersState.state.users[userId]
+        let user = state.usersState.users[userId]
         return Modal(UserEditForm(userId: user.id, saveHandler: { saved in
-            self.usersState.dispatch(action: .stopEditUser)
-        }).environmentObject(usersState)) {
-            self.usersState.dispatch(action: .stopEditUser)
+            self.state.dispatch(action: UserActions.stopEditUser)
+        }).environmentObject(state)) {
+            self.state.dispatch(action: UserActions.stopEditUser)
         }
     }
     
     var body: some View {
-        let user = usersState.state.users[userId]
+        let user = state.usersState.users[userId]
         return VStack {
             Image(systemName: user.imageName)
             Text(user.name)
@@ -32,11 +32,11 @@ struct UserDetailView : View {
             .navigationBarTitle(Text(user.name), displayMode: .inline)
             .navigationBarItems(trailing:
                 Button(action: {
-                    self.usersState.dispatch(action: .startEditUser)
+                    self.state.dispatch(action: UserActions.startEditUser)
                 }) {
                     Text("Edit user")
                     }
-                    .presentation(self.usersState.state.isEditingUser ? self.editModal : nil))
+                    .presentation(self.state.usersState.isEditingUser ? self.editModal : nil))
     }
 }
 
@@ -44,7 +44,7 @@ struct UserDetailView : View {
 struct UserDetailView_Previews : PreviewProvider {
     static var previews: some View {
         NavigationView {
-            UserDetailView(userId: 0).environmentObject(Store(state: UsersState(users: sampleData)))
+            UserDetailView(userId: 0).environmentObject(AppState(usersState: UsersState(users: sampleData)))
         }
     }
 }

@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct UsersListView : View {
-    @EnvironmentObject var usersState: Store<UsersState>
+    @EnvironmentObject var state: AppState
     
     var body: some View {
         NavigationView {
@@ -23,7 +23,7 @@ struct UsersListView : View {
                     }
                 }
                 Section {
-                    ForEach(usersState.state.users) {user in
+                    ForEach(state.usersState.users) {user in
                         NavigationButton(destination: UserDetailView(userId: user.id)) {
                             UserRow(user: user)
                         }
@@ -33,34 +33,34 @@ struct UsersListView : View {
                 }
             }
                 .listStyle(.grouped)
-                .navigationBarTitle(Text("Users (\(usersState.state.users.count))"))
+                .navigationBarTitle(Text("Users (\(state.usersState.users.count))"))
                 .navigationBarItems(trailing: EditButton())
         }
 
     }
     
     func addUser() {
-        usersState.dispatch(action: .addUser)
+        state.dispatch(action: UserActions.addUser)
 
     }
     
     func targetUpdate() {
-        usersState.dispatch(action: .testEditFirstUser)
+        state.dispatch(action: UserActions.testEditFirstUser)
     }
     
     func delete(at offset: IndexSet) {
-        usersState.dispatch(action: .deleteUser(index: offset.first!))
+        state.dispatch(action: UserActions.deleteUser(index: offset.first!))
     }
     
     func move(from: IndexSet, to: Int) {
-        usersState.dispatch(action: .move(from: from.first!, to: to))
+        state.dispatch(action: UserActions.move(from: from.first!, to: to))
     }
 }
 
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {
     static var previews: some View {
-        UsersListView().environmentObject(Store(state: UsersState(users: sampleData)))
+        UsersListView().environmentObject(AppState(usersState: UsersState(users: sampleData)))
     }
 }
 #endif
