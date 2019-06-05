@@ -7,24 +7,25 @@
 //
 
 import SwiftUI
+import Combine
 
 struct UserDetailView : View {
-    @EnvironmentObject var usersStore: UsersStore
+    @EnvironmentObject var usersState: Store<UsersState>
     let userId: Int
     
     @State var showEditModal = false
     
     var editModal: Modal {
-        let user = usersStore.users[userId]
+        let user = usersState.state.users[userId]
         return Modal(UserEditForm(userId: user.id, saveHandler: {nsaved in
             self.showEditModal = false
-        }).environmentObject(usersStore)) {
+        }).environmentObject(usersState)) {
             self.showEditModal = false
         }
     }
     
     var body: some View {
-        let user = usersStore.users[userId]
+        let user = usersState.state.users[userId]
         return VStack {
             Image(systemName: user.imageName)
             Text(user.name)
@@ -45,7 +46,7 @@ struct UserDetailView : View {
 struct UserDetailView_Previews : PreviewProvider {
     static var previews: some View {
         NavigationView {
-            UserDetailView(userId: 0).environmentObject(UsersStore(users: sampleData))
+            UserDetailView(userId: 0).environmentObject(Store(state: UsersState(users: sampleData)))
         }
     }
 }

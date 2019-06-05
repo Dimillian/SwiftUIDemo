@@ -9,7 +9,7 @@
  import SwiftUI
  
  struct UserEditForm : View {
-    @EnvironmentObject var usersStore: UsersStore
+    @EnvironmentObject var usersState: Store<UsersState>
     
     let userId: Int
     let saveHandler: ((Bool) -> Swift.Void)?
@@ -19,7 +19,7 @@
     
     var body: some View {
         get {
-            let user = usersStore.users[userId]
+            let user = usersState.state.users[userId]
             return NavigationView {
                 VStack(alignment: .leading, spacing: 10) {
                     Text("User name")
@@ -46,7 +46,7 @@
     }
     
     func save() {
-        usersStore.editUser(id: userId, name: newUserName, username: newUserUsername)
+        usersState.dispatch(action: .editUser(id: userId, name: newUserName, username: newUserUsername))
         saveHandler?(true)
     }
     
@@ -58,7 +58,7 @@
  #if DEBUG
  struct UserEditForm_Previews : PreviewProvider {
     static var previews: some View {
-        UserEditForm(userId: 0, saveHandler: nil).environmentObject(UsersStore(users: sampleData))
+        UserEditForm(userId: 0, saveHandler: nil).environmentObject(Store(state: UsersState(users: sampleData)))
     }
  }
  #endif

@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct UsersListView : View {
-    @EnvironmentObject var usersStore: UsersStore
+    @EnvironmentObject var usersState: Store<UsersState>
     
     var body: some View {
         NavigationView {
@@ -23,8 +23,8 @@ struct UsersListView : View {
                     }
                 }
                 Section {
-                    ForEach(usersStore.users) {user in
-                        NavigationButton(destination: UserDetailView(userId: user.id).environmentObject(self.usersStore)) {
+                    ForEach(usersState.state.users) {user in
+                        NavigationButton(destination: UserDetailView(userId: user.id).environmentObject(self.usersState)) {
                             UserRow(user: user)
                         }
                     }
@@ -33,35 +33,34 @@ struct UsersListView : View {
                 }
             }
                 .listStyle(.grouped)
-                .navigationBarTitle(Text("Users (\(usersStore.users.count))"))
+                .navigationBarTitle(Text("Users (\(usersState.state.users.count))"))
                 .navigationBarItems(trailing: EditButton())
         }
 
     }
     
     func addUser() {
-        usersStore.addUser()
+        usersState.dispatch(action: .addUser)
+
     }
     
     func targetUpdate() {
-        if !usersStore.users.isEmpty {
-            usersStore.users[0] = User(id: 0, name: "user1", username: "u\ns\ne\nr\nn\na\nm\ne")
-        }
+        usersState.dispatch(action: .testEditFirstUser)
     }
     
     func delete(at offset: IndexSet) {
-        usersStore.delete(at: offset.first!)
+        usersState.dispatch(action: .deleteUser(index: offset.first!))
     }
     
     func move(from: IndexSet, to: Int) {
-        usersStore.move(from: from.first!, to: to)
+        usersState.dispatch(action: .move(from: from.first!, to: to))
     }
 }
 
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {
     static var previews: some View {
-        UsersListView().environmentObject(UsersStore(users: sampleData))
+        UsersListView().environmentObject(Store(state: UsersState(users: sampleData)))
     }
 }
 #endif

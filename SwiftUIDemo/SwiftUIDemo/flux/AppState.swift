@@ -7,10 +7,10 @@
 //
 
 
-struct AppStore {
-    let usersStore: UsersStore
+struct AppState {
+    let usersState: UsersState
 }
 
-let store = AppStore(usersStore: UsersStore())
+let store = AppState(usersState: UsersState())
 
 
