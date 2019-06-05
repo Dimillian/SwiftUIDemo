@@ -8,9 +8,7 @@
 
 import Foundation
 
-struct UserStateReducer: Reducer {
-    typealias StateType = UsersState
-    
+struct UserStateReducer: Reducer {    
     func reduce(state: UsersState, action: Action) -> UsersState {
         var state = state
         switch action {
