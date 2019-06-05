@@ -17,10 +17,31 @@ class UsersStore: BindableObject {
         }
     }
     
+    let didChange = PassthroughSubject<[User], Never>()
+    
     init(users: [User] = []) {
         self.users = users
     }
     
+    func addUser() {
+        users.append(User(id: users.count + 1,
+                          name: "New user \(users.count + 1)",
+                        username: "@newuser\(users.count + 1)"))
+    }
     
-    let didChange = PassthroughSubject<[User], Never>()
+    func delete(at index: Int) {
+        users.remove(at: index)
+    }
+    
+    func move(from: Int, to: Int) {
+        let user = users.remove(at: from)
+        users.insert(user, at: to)
+    }
+    
+    func editUser(id: Int, name: String, username: String) {
+        var user = users[id]
+        user.name = name
+        user.username = username
+        users[id] = user
+    }
 }

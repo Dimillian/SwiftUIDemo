@@ -11,8 +11,8 @@ import SwiftUI
 
 struct User: Identifiable {
     let id: Int
-    let name: String
-    let username: String
+    var name: String
+    var username: String
     let imageName = "person"
 }
 

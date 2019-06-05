@@ -18,11 +18,11 @@
         NavigationView {
             VStack(alignment: .leading, spacing: 10) {
                 Text("User name")
-                TextField($newUserName)
+                TextField($newUserName, placeholder: Text("New name"))
                     .textFieldStyle(.roundedBorder)
                 Divider()
                 Text("Username")
-                TextField($newUserUsername)
+                TextField($newUserUsername, placeholder: Text("New username"))
                     .textFieldStyle(.roundedBorder)
                 }.padding(16)
                 Button(action: save) {
@@ -36,7 +36,7 @@
     }
     
     func save() {
-        
+        store.usersStore.editUser(id: user.id, name: newUserName, username: newUserUsername)
     }
     
     func close() {

@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct UsersListView : View {
-    @ObjectBinding var store = UsersStore()
+    @ObjectBinding var usersStore: UsersStore
     
     var body: some View {
         NavigationView {
@@ -23,7 +23,7 @@ struct UsersListView : View {
                     }
                 }
                 Section {
-                    ForEach(store.users) {user in
+                    ForEach(usersStore.users) {user in
                         NavigationButton(destination: UserDetailView(user: user)) {
                             UserRow(user: user)
                         }
@@ -33,38 +33,35 @@ struct UsersListView : View {
                 }
             }
                 .listStyle(.grouped)
-                .navigationBarTitle(Text("Users (\(store.users.count))"))
+                .navigationBarTitle(Text("Users (\(usersStore.users.count))"))
                 .navigationBarItems(trailing: EditButton())
         }
 
     }
     
     func addUser() {
-        store.users.append(User(id: store.users.count + 1,
-                                name: "New user",
-                                username: "@newuser"))
+        usersStore.addUser()
     }
     
     func targetUpdate() {
-        if !store.users.isEmpty {
-            store.users[0] = User(id: 0, name: "user1", username: "u\ns\ne\nr\nn\na\nm\ne")
+        if !usersStore.users.isEmpty {
+            usersStore.users[0] = User(id: 0, name: "user1", username: "u\ns\ne\nr\nn\na\nm\ne")
         }
     }
     
     func delete(at offset: IndexSet) {
-        store.users.remove(at: offset.first!)
+        usersStore.delete(at: offset.first!)
     }
     
     func move(from: IndexSet, to: Int) {
-        let user = store.users.remove(at: from.first!)
-        store.users.insert(user, at: to)
+        usersStore.move(from: from.first!, to: to)
     }
 }
 
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {
     static var previews: some View {
-        UsersListView(store: UsersStore(users: sampleData))
+        UsersListView(usersStore: UsersStore(users: sampleData))
     }
 }
 #endif
