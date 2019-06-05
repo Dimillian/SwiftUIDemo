@@ -13,14 +13,12 @@ struct UserDetailView : View {
     @EnvironmentObject var usersState: Store<UsersState>
     let userId: Int
     
-    @State var showEditModal = false
-    
     var editModal: Modal {
         let user = usersState.state.users[userId]
-        return Modal(UserEditForm(userId: user.id, saveHandler: {nsaved in
-            self.showEditModal = false
+        return Modal(UserEditForm(userId: user.id, saveHandler: { saved in
+            self.usersState.dispatch(action: .stopEditUser)
         }).environmentObject(usersState)) {
-            self.showEditModal = false
+            self.usersState.dispatch(action: .stopEditUser)
         }
     }
     
@@ -34,11 +32,11 @@ struct UserDetailView : View {
             .navigationBarTitle(Text(user.name), displayMode: .inline)
             .navigationBarItems(trailing:
                 Button(action: {
-                    self.showEditModal = true
+                    self.usersState.dispatch(action: .startEditUser)
                 }) {
                     Text("Edit user")
                     }
-                    .presentation(self.showEditModal ? self.editModal : nil))
+                    .presentation(self.usersState.state.isEditingUser ? self.editModal : nil))
     }
 }
 

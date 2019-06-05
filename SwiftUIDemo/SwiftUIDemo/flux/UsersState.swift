@@ -17,9 +17,12 @@ struct UsersState: StateActions {
         case move(from: Int, to: Int)
         case editUser(id: Int, name: String, username: String)
         case testEditFirstUser
+        case startEditUser
+        case stopEditUser
     }
     
     var users: [User]
+    var isEditingUser = false
     
     init(users: [User] = []) {
         self.users = users
@@ -45,6 +48,10 @@ struct UsersState: StateActions {
             if !users.isEmpty {
                 users[0] = User(id: 0, name: "user1", username: "u\ns\ne\nr\nn\na\nm\ne")
             }
+        case .startEditUser:
+            isEditingUser = true
+        case .stopEditUser:
+            isEditingUser = false
         }
     }
 }
