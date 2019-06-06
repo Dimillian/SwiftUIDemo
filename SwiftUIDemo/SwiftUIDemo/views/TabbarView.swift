@@ -15,7 +15,6 @@ struct TabbarView : View {
     var body: some View {
         TabbedView(selection: $selectedIndex) {
             UsersListView()
-                .environmentObject(state)
                 .tabItemLabel(Text("Users"))
             MapView()
                 .tabItemLabel(Text("Map"))

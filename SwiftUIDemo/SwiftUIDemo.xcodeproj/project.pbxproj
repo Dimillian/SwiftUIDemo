@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6905595122A82C0400639314 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6905595022A82C0400639314 /* AppState.swift */; };
+		69250A8B22A97BE300332EF0 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69250A8A22A97BE300332EF0 /* Badge.swift */; };
 		69516A5D22A8743500E62A5E /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69516A5C22A8743500E62A5E /* Reducer.swift */; };
 		69516A5F22A8745800E62A5E /* FluxState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69516A5E22A8745800E62A5E /* FluxState.swift */; };
 		69516A6122A8747600E62A5E /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69516A6022A8747600E62A5E /* Action.swift */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		6905595022A82C0400639314 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		69250A8A22A97BE300332EF0 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		69516A5C22A8743500E62A5E /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
 		69516A5E22A8745800E62A5E /* FluxState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FluxState.swift; sourceTree = "<group>"; };
 		69516A6022A8747600E62A5E /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
@@ -66,6 +68,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		69250A8922A97BD500332EF0 /* component */ = {
+			isa = PBXGroup;
+			children = (
+				69250A8A22A97BE300332EF0 /* Badge.swift */,
+			);
+			path = component;
+			sourceTree = "<group>";
+		};
 		69516A5822A873C900E62A5E /* states */ = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +107,7 @@
 		69C1521F22A8CF2A00149392 /* users */ = {
 			isa = PBXGroup;
 			children = (
+				69250A8922A97BD500332EF0 /* component */,
 				69E06C4722A7015F0081D614 /* rows */,
 				69E06C3022A6FD6B0081D614 /* UsersListView.swift */,
 				69E06C4B22A706450081D614 /* UserDetailView.swift */,
@@ -278,6 +289,7 @@
 				69516A5D22A8743500E62A5E /* Reducer.swift in Sources */,
 				69E06C2F22A6FD6B0081D614 /* SceneDelegate.swift in Sources */,
 				69E06C4C22A706450081D614 /* UserDetailView.swift in Sources */,
+				69250A8B22A97BE300332EF0 /* Badge.swift in Sources */,
 				69C1522222A8CF4600149392 /* MapView.swift in Sources */,
 				69E06C3122A6FD6B0081D614 /* UsersListView.swift in Sources */,
 				6905595122A82C0400639314 /* AppState.swift in Sources */,

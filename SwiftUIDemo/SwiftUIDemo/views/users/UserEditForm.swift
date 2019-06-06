@@ -17,12 +17,7 @@
     @State var newUserName = ""
     @State var newUserUsername = ""
     @State var showSaved = false
-    
-    var savedAnimation: Animation {
-        Animation
-            .spring(initialVelocity: 5)
-            .speed(2)
-    }
+    @State var showError = false
     
     var body: some View {
         let user = state.usersState.users[userId]
@@ -48,21 +43,26 @@
                 })
                 .navigationBarTitle(Text("Edit \(user.name)"), displayMode: .inline)
             
-            Text("Saved successfully")
-                .color(.white)
-                .padding()
-                .background(Color.green)
-                .cornerRadius(8)
-                .scaleEffect(showSaved ? 1: 0.5)
-                .opacity(showSaved ? 1 : 0)
-                .animation(savedAnimation)
+            Badge(text: "Saved successfully", color: .green, show: $showSaved)
+            Badge(text: "Missing username or name", color: .red, show: $showError)
         }
     }
     
     func save() {
+        guard !newUserName.isEmpty && !newUserUsername.isEmpty else {
+            withAnimation{
+                showError = true
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.showError = false
+            }
+            return
+        }
+        
         withAnimation {
             showSaved = true
         }
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.showSaved = false
         }
