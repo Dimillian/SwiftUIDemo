@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Use a UIHostingController as window root view controller
         let window = UIWindow(frame: UIScreen.main.bounds)
-        window.rootViewController = UIHostingController(rootView: UsersListView().environmentObject(AppState()))
+        window.rootViewController = UIHostingController(rootView: TabbarView(selectedIndex: 0).environmentObject(AppState()))
         self.window = window
         window.makeKeyAndVisible()
     }
