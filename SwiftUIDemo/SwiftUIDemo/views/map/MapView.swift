@@ -13,8 +13,7 @@ import MapKit
 
 struct MapViewRepresentable: UIViewRepresentable {
     func makeUIView(context: Context) -> MKMapView {
-        let mapView = MKMapView()
-        return mapView
+        return MKMapView()
     }
     
     func updateUIView(_ uiView: MKMapView, context: Context) {

@@ -16,6 +16,13 @@
     
     @State var newUserName = ""
     @State var newUserUsername = ""
+    @State var showSaved = false
+    
+    var savedAnimation: Animation {
+        Animation
+            .spring(initialVelocity: 5)
+            .speed(2)
+    }
     
     var body: some View {
         let user = state.usersState.users[userId]
@@ -40,10 +47,26 @@
                     Text("Close")
                 })
                 .navigationBarTitle(Text("Edit \(user.name)"), displayMode: .inline)
-            }
+            
+            Text("Saved successfully")
+                .color(.white)
+                .padding()
+                .background(Color.green)
+                .cornerRadius(8)
+                .scaleEffect(showSaved ? 1: 0.5)
+                .opacity(showSaved ? 1 : 0)
+                .animation(savedAnimation)
+        }
     }
     
     func save() {
+        withAnimation {
+            showSaved = true
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.showSaved = false
+        }
+        
         state.dispatch(action: UserActions.editUser(id: userId, name: newUserName, username: newUserUsername))
         saveHandler?(true)
     }
@@ -60,5 +83,6 @@
     }
  }
  #endif
+ 
  
 
