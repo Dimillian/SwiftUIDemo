@@ -27,4 +27,8 @@ final class AppState: BindableObject {
 
 let store = AppState()
 
+#if DEBUG
+let sampleStore = AppState(usersState: UsersState(users: sampleData))
+#endif
+
 

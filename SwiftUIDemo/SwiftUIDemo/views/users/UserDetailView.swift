@@ -44,7 +44,7 @@ struct UserDetailView : View {
 struct UserDetailView_Previews : PreviewProvider {
     static var previews: some View {
         NavigationView {
-            UserDetailView(userId: 0).environmentObject(AppState(usersState: UsersState(users: sampleData)))
+            UserDetailView(userId: 0).environmentObject(sampleStore)
         }
     }
 }

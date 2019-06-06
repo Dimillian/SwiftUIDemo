@@ -79,7 +79,7 @@
  #if DEBUG
  struct UserEditForm_Previews : PreviewProvider {
     static var previews: some View {
-        UserEditForm(userId: 0, saveHandler: nil).environmentObject(AppState(usersState: UsersState(users: sampleData)))
+        UserEditForm(userId: 0, saveHandler: nil).environmentObject(sampleStore)
     }
  }
  #endif

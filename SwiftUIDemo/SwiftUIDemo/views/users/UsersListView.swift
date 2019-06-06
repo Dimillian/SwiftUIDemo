@@ -60,7 +60,7 @@ struct UsersListView : View {
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {
     static var previews: some View {
-        UsersListView().environmentObject(AppState(usersState: UsersState(users: sampleData)))
+        UsersListView().environmentObject(sampleStore)
     }
 }
 #endif

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct TabbarView : View {
     @EnvironmentObject var state: AppState
-    @State var selectedIndex: Int
+    @State var selectedIndex: Int = 0
     
     var body: some View {
         TabbedView(selection: $selectedIndex) {
@@ -25,7 +25,7 @@ struct TabbarView : View {
 #if DEBUG
 struct MainView_Previews : PreviewProvider {
     static var previews: some View {
-        TabbarView(selectedIndex: 0).environmentObject(AppState(usersState: UsersState(users: sampleData)))
+        TabbarView(selectedIndex: 0).environmentObject(sampleStore)
     }
 }
 #endif
